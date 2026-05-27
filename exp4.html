@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Experiment 4 - Marks Calculator</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #eef2f7; color: #1f2937; }
+    main { max-width: 720px; margin: 32px auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 10px 24px #0001; }
+    input, button { padding: 10px; margin: 6px 0; }
+    input { width: 100%; box-sizing: border-box; }
+    button { background: #2563eb; color: white; border: 0; border-radius: 4px; cursor: pointer; }
+    .mark-row { margin-top: 8px; }
+    #result { margin-top: 16px; padding: 12px; background: #f8fafc; border-left: 4px solid #2563eb; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Student Marks Calculator</h1>
+    <label>Number of subjects</label>
+    <input type="number" id="subjectCount" min="1" max="12" placeholder="Enter number of subjects">
+    <button onclick="createInputs()">Create Mark Fields</button>
+    <form id="marksForm"></form>
+    <div id="result"></div>
+  </main>
+
+  <script>
+    function createInputs() {
+      const count = Number(document.getElementById('subjectCount').value);
+      const form = document.getElementById('marksForm');
+      form.innerHTML = '';
+      if (!count || count < 1) {
+        document.getElementById('result').textContent = 'Please enter a valid number of subjects.';
+        return;
+      }
+      for (let i = 1; i <= count; i++) {
+        form.innerHTML += `<div class="mark-row"><label>Subject ${i} Marks</label><input class="mark" type="number" min="0" max="100" required></div>`;
+      }
+      form.innerHTML += '<button type="submit">Calculate Result</button>';
+    }
+
+    document.getElementById('marksForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const marks = [...document.querySelectorAll('.mark')].map(input => Number(input.value));
+      let total = 0;
+      let passed = true;
+      for (const mark of marks) {
+        total += mark;
+        if (mark < 35) passed = false;
+      }
+      const average = total / marks.length;
+      let grade = 'F';
+      if (average >= 90) grade = 'A+';
+      else if (average >= 75) grade = 'A';
+      else if (average >= 60) grade = 'B';
+      else if (average >= 45) grade = 'C';
+      else if (average >= 35) grade = 'D';
+      const result = passed && average >= 35 ? 'Pass' : 'Fail';
+      document.getElementById('result').innerHTML = `
+        <strong>Total:</strong> ${total}<br>
+        <strong>Average:</strong> ${average.toFixed(2)}<br>
+        <strong>Grade:</strong> ${grade}<br>
+        <strong>Result:</strong> ${result}
+      `;
+    });
+  </script>
+</body>
+</html>

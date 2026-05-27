@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Experiment 5 - Employee Records</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f3f4f6; color: #111827; }
+    main { max-width: 900px; margin: 28px auto; padding: 24px; background: #fff; border-radius: 8px; }
+    .grid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+    input, button { padding: 10px; }
+    button { border: 0; border-radius: 4px; background: #0f766e; color: #fff; cursor: pointer; }
+    table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Employee Management</h1>
+    <div class="grid">
+      <input id="name" placeholder="Employee Name">
+      <input id="empId" placeholder="Employee ID">
+      <input id="salary" type="number" placeholder="Salary">
+      <input id="department" placeholder="Department">
+    </div>
+    <p>
+      <button onclick="addEmployee()">Add Employee</button>
+      <button onclick="displayEmployees()">Display All</button>
+      <button onclick="totalSalary()">Total Salary</button>
+      <button onclick="averageSalary()">Average Salary</button>
+      <button onclick="countDepartment()">Count Department</button>
+    </p>
+    <div id="output"></div>
+  </main>
+
+  <script>
+    const employees = [];
+
+    function addEmployee() {
+      const employee = {
+        name: document.getElementById('name').value.trim(),
+        id: document.getElementById('empId').value.trim(),
+        salary: Number(document.getElementById('salary').value),
+        department: document.getElementById('department').value.trim()
+      };
+      if (!employee.name || !employee.id || !employee.salary || !employee.department) {
+        output.innerHTML = 'Please enter all employee details.';
+        return;
+      }
+      employees.push(employee);
+      output.innerHTML = 'Employee added successfully.';
+    }
+
+    function displayEmployees() {
+      if (employees.length === 0) {
+        output.innerHTML = 'No employees added yet.';
+        return;
+      }
+      output.innerHTML = `<table><tr><th>Name</th><th>ID</th><th>Salary</th><th>Department</th></tr>${employees.map(emp =>
+        `<tr><td>${emp.name}</td><td>${emp.id}</td><td>${emp.salary}</td><td>${emp.department}</td></tr>`
+      ).join('')}</table>`;
+    }
+
+    function totalSalary() {
+      const total = employees.reduce((sum, emp) => sum + emp.salary, 0);
+      output.innerHTML = `Total salary payout: ${total}`;
+    }
+
+    function averageSalary() {
+      const total = employees.reduce((sum, emp) => sum + emp.salary, 0);
+      output.innerHTML = employees.length ? `Average salary: ${(total / employees.length).toFixed(2)}` : 'No employees available.';
+    }
+
+    function countDepartment() {
+      const dept = prompt('Enter department name');
+      const count = employees.filter(emp => emp.department.toLowerCase() === dept.toLowerCase()).length;
+      output.innerHTML = `Employees in ${dept}: ${count}`;
+    }
+  </script>
+</body>
+</html>

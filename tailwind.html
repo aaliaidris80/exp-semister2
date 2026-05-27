@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Experiment 3 - Tailwind Mobile First</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <header class="bg-white border-b">
+    <nav class="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
+      <div class="text-2xl font-bold text-emerald-700">FitLife</div>
+      <div class="flex flex-wrap gap-4 text-sm font-medium">
+        <a href="#" class="hover:text-emerald-700">Home</a>
+        <a href="#programs" class="hover:text-emerald-700">Programs</a>
+        <a href="#" class="hover:text-emerald-700">Trainers</a>
+        <a href="#contact" class="hover:text-emerald-700">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="bg-gradient-to-r from-emerald-600 to-cyan-700 text-white">
+      <div class="mx-auto max-w-6xl px-4 py-16 sm:py-20">
+        <h1 class="max-w-2xl text-4xl font-bold sm:text-5xl">Build a stronger routine with FitLife training.</h1>
+        <p class="mt-4 max-w-xl text-lg text-emerald-50">Join guided programs for strength, flexibility, and nutrition with a plan that works on every screen.</p>
+        <a href="#programs" class="mt-6 inline-block rounded bg-white px-5 py-3 font-semibold text-emerald-700">Explore Programs</a>
+      </div>
+    </section>
+
+    <section id="programs" class="mx-auto max-w-6xl px-4 py-12">
+      <h2 class="text-2xl font-bold">Services</h2>
+      <div class="mt-6 grid gap-5 md:grid-cols-3">
+        <article class="rounded border bg-white p-6 shadow-sm">
+          <h3 class="text-xl font-bold">Weight Training</h3>
+          <p class="mt-2 text-slate-600">Structured strength workouts for beginners and advanced learners.</p>
+        </article>
+        <article class="rounded border bg-white p-6 shadow-sm">
+          <h3 class="text-xl font-bold">Yoga Classes</h3>
+          <p class="mt-2 text-slate-600">Improve mobility, breathing, and balance with guided sessions.</p>
+        </article>
+        <article class="rounded border bg-white p-6 shadow-sm">
+          <h3 class="text-xl font-bold">Diet Plans</h3>
+          <p class="mt-2 text-slate-600">Simple meal guidance to support your training goals.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="bg-slate-900 px-4 py-6 text-center text-white">
+    <p>Contact: info@fitlife.example | +91 98765 43210</p>
+    <p class="mt-1 text-sm text-slate-300">&copy; 2026 FitLife</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Experiment 7 - React Props</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f3f4f6; margin: 0; }
+    main { max-width: 900px; margin: 32px auto; padding: 24px; }
+    .students { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .student { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 18px; }
+  </style>
+</head>
+<body>
+  <main id="root"></main>
+  <script type="text/babel">
+    function Student({ name, course, marks }) {
+      return (
+        <article className="student">
+          <h2>{name}</h2>
+          <p><strong>Course:</strong> {course}</p>
+          <p><strong>Marks:</strong> {marks}</p>
+        </article>
+      );
+    }
+
+    function App() {
+      return (
+        <>
+          <h1>Student Details</h1>
+          <section className="students">
+            <Student name="Aarav Sharma" course="Web Development" marks="88" />
+            <Student name="Priya Singh" course="React JS" marks="92" />
+            <Student name="Rahul Patil" course="JavaScript" marks="79" />
+          </section>
+        </>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
